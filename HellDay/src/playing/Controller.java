@@ -136,20 +136,29 @@ public class Controller {
 	
 	private class NewQuestion extends Thread {
 		private Random random = new Random();
+		private int counter = 300;
 		
 		public NewQuestion() {
 			runQuestion = true;
 			this.start();
 		}
 		public void run() {
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			while(runQuestion) {
 				q.setQuestion();
-				q.setLocation(random.nextInt(9)+1);
-				game.update();
-				try {
-					Thread.sleep(10000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+				qLocation = random.nextInt(9)+1;
+				for(int i = 0; i <= counter; counter--) {
+					game.setTimeRemaining(""+counter);
+					game.update();
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}

@@ -27,6 +27,7 @@ public class Test extends JPanel{
 	private JTextField tfAnswer = new JTextField("Skriv ditt svar här");
 	private JPanel panelAnswer = new JPanel();
 	private JButton buttonAnswer = new JButton("Svara");
+	private String timeRemaining = "";
 	
 	public Test(){
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
@@ -55,6 +56,10 @@ public class Test extends JPanel{
 	public void setPower(boolean b){
 		power = b;
 	}
+	
+	public void setTimeRemaining(String time) {
+		timeRemaining = time;
+	}
 
 	/**
 	 * Okej paintComponent. This is where the magic happens. paintComponent metoden
@@ -73,6 +78,8 @@ public class Test extends JPanel{
 		q.draw((Graphics2D)g);
 		hero.draw((Graphics2D) g);
 		alert.draw((Graphics2D) g);
+		g.setColor(Color.black);
+		g.drawString(timeRemaining, 390, 50);
 		
 		if(power){
 			g.setColor(Color.BLACK);
@@ -195,6 +202,11 @@ public class Test extends JPanel{
 						if(answer.get(i).equals(tfAnswer.getText())) {
 							q.setAnswerValue("RÄTT! RÄTT! RÄTT! RÄTT!");
 							update();
+							requestFocus();
+						} else {
+							q.setAnswerValue("FEL FEL FEL FEL");
+							update();
+							requestFocus();
 						}
 					}
 					controller.newQuestion();

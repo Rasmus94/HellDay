@@ -18,6 +18,7 @@ public class Question{
 	private ArrayList<String> answer = new ArrayList<String>();
 	
 	public Question(Background bg, int x, int y, int location){
+		gq.initQLevelTwo();
 		setQuestion();
 		this.x = x;
 		this.y = y;
@@ -42,8 +43,8 @@ public class Question{
 	}
 	
 	public void setQuestion(){
-		String txt = gq.getRandomKey();
-		answer = gq.getValue();
+		String txt = gq.getQuestion();
+		answer = gq.getAnswer();
 		this.question = fixQuestion(txt);
 	}
 	

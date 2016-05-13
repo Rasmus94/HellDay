@@ -80,8 +80,8 @@ public class GUI  extends JPanel{
 		question.setFont(font1);
 		question.setEditable(false);
 		Border b1 = BorderFactory.createTitledBorder("Svara på den fråga");
-		gq.test();
-		question.setText(gq.getRandomKey());
+		gq.initQLevelOne();
+		question.setText(gq.getQuestion());
 		question.setLineWrap(true);
 		question.setWrapStyleWord(true);
 		
@@ -153,8 +153,7 @@ public class GUI  extends JPanel{
            if (--timeRemaining > 0) {
               timer.setText(String.valueOf(timeRemaining));
            } else {
-              timer.setText("Time's up!");
-           // 
+              timer.setText("Time's up!"); 
            }
         }
      }
@@ -165,8 +164,8 @@ public class GUI  extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			
-		//if(answer.getText().equals(gq.getValue())){
-		if (gq.getValue().contains(answer.getText())){
+
+		if (gq.getAnswer().contains(answer.getText())){
 				animation.setText("Rätt Svar");
 				animation.setFont(font2);
 				animation.setForeground(Color.green);
@@ -174,6 +173,7 @@ public class GUI  extends JPanel{
 				answer.setEditable(false);
 				submit.setEnabled(false);
 				countdownTimer.stop();
+				gq.removeUsedQuestion(gq.getQuestion());
 				points+=10;
 				score.setText(String.valueOf(points));
 				if(this.points== 100){
@@ -202,8 +202,7 @@ public class GUI  extends JPanel{
 			resetTimeRemaing();
 			timer.setText(String.valueOf(timeRemaining));
 		    countdownTimer.start();
-			gq.test();
-			question.setText(gq.getRandomKey());
+			question.setText(gq.getQuestion());
 			answer.setText("Svara här");
 			animation.setIcon(new ImageIcon("QuestionMark.gif"));
 			animation.setText("");		
