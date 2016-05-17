@@ -11,6 +11,7 @@ public class SwitchPanel extends JPanel {
 	private WelcomeScreen welcome = new WelcomeScreen(this);
 	private GUI first = new GUI(this);
 	private Test test = new Test();
+	private HelpScreen help = new HelpScreen(this);
 	
 	public SwitchPanel(){
 		this.setFocusable(true);
@@ -18,6 +19,7 @@ public class SwitchPanel extends JPanel {
 		this.add(welcome, "welcomePnl");
 		this.add(test, "testPnl");
 		this.add(first, "firstPnl");
+		this.add(help, "helpPnl");
 	}
 	
 	public void changePanel(String panel){
@@ -30,6 +32,9 @@ public class SwitchPanel extends JPanel {
 		}else if(panel.equals("firstPnl")){
 			cardLayout.show(this, panel);
 			first.requestFocus();
+		}else if(panel.equals("helpPnl")) {
+			cardLayout.show(this, panel);
+			help.requestFocus();
 		}
 		
 		

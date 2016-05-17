@@ -134,7 +134,7 @@ public class WelcomeScreen extends JPanel {
 	private class HelpListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+			switchPanel.changePanel("helpPnl");
 		}
 	}
 	
